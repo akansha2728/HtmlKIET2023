@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Star Pattern Triangle</title>
+  </head>
+  <body>
+   
+    <label for="height">Enter the height of triangle:</label>
+    <input
+      type="number"
+      id="height"
+      min="1"
+      max="50"
+      placeholder="Enter height"
+    /><br><br>
+
+    <button onclick="generateTriangle()">SHOW TRIANGLE PATTERN</button>
+    <pre id="triangle-output"></pre>
+
+    <script>
+      function drawStarTriangle(height) {
+        let triangle = "";
+        for (let i = 1; i <= height; i++) {
+          let row = "";
+          // Add leading spaces
+          for (let s = 1; s <= height - i; s++) {
+            row += " ";
+          }
+          // Add stars
+          for (let j = 1; j <= 2 * i - 1; j++) {
+            row += "*";
+          }
+          triangle += row + "\n";
+        }
+        return triangle;
+      }
+
+      function generateTriangle() {
+        const heightInput = document.getElementById("height");
+        const triangleOutput = document.getElementById("triangle-output");
+        const height = parseInt(heightInput.value, 10);
+
+        if (isNaN(height) || height < 1 || height > 50) {
+          triangleOutput.textContent =
+            "Please enter a valid height greater than 0 and less than 50.";
+        } else {
+          const trianglePattern = drawStarTriangle(height);
+          triangleOutput.textContent = trianglePattern;
+        }
+      }
+    </script>
+  </body>
+</html>
